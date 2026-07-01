@@ -1,4 +1,4 @@
-# programacion_paralela_periodo_dos# Suma de vectores híbrida: CPU (OpenMP) + GPU (CUDA)
+# Suma de vectores híbrida: CPU (OpenMP) + GPU (CUDA)
 
 Actividad Semana 8 — Computación Paralela y Distribuida (UNIBE).
 
