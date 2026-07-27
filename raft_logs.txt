@@ -1,0 +1,45 @@
+======================================================================
+PROTOTIPO RAFT - 3 NODOS
+======================================================================
+
+--- FASE 1: Eleccion de lider ---
+[t=  1.76s] [Nodo N2] Timeout de eleccion vencido -> pasa a CANDIDATO
+[t=  1.81s] [Nodo N2] Inicia eleccion para termino 1, se vota a si mismo
+[t=  1.81s] [Nodo N1] Voto CONCEDIDO a N2 en termino 1
+[t=  1.81s] [Nodo N3] Voto CONCEDIDO a N2 en termino 1
+[t=  1.81s] [Nodo N2] Gana la eleccion con 3/3 votos -> LIDER del termino 1
+
+>> Lider actual: N2 (termino 1)
+
+--- FASE 2: Propuesta y replicacion del valor 'A=1' ---
+[t=  4.01s] [Nodo N2] Recibe propuesta de cliente: 'A=1'. Replica a seguidores...
+[t=  4.01s] [Nodo N1] Replica log del lider N2: ['A=1']
+[t=  4.01s] [Nodo N3] Replica log del lider N2: ['A=1']
+[t=  4.01s] [Nodo N2] Mayoria confirma. COMMIT del indice 0 = 'A=1'
+[t=  4.07s] [Nodo N1] COMMIT confirmado -> aplica 'A=1'
+[t=  4.07s] [Nodo N3] COMMIT confirmado -> aplica 'A=1'
+
+--- FASE 3: Se simula la caida del lider N2 ---
+[t=  6.01s] [Nodo N2] !! NODO CAIDO !!
+
+--- FASE 4: Los seguidores detectan ausencia de latidos y eligen nuevo lider ---
+[t=  7.74s] [Nodo N1] Timeout de eleccion vencido -> pasa a CANDIDATO
+[t=  7.79s] [Nodo N1] Inicia eleccion para termino 2, se vota a si mismo
+[t=  7.79s] [Nodo N1] Peer N2 no responde (posiblemente caido)
+[t=  7.79s] [Nodo N3] Voto CONCEDIDO a N1 en termino 2
+[t=  7.79s] [Nodo N1] Gana la eleccion con 2/3 votos -> LIDER del termino 2
+
+>> Nuevo lider: N1 (termino 2)
+
+--- FASE 5: Nueva propuesta 'B=2' bajo el nuevo lider ---
+[t= 12.01s] [Nodo N1] Recibe propuesta de cliente: 'B=2'. Replica a seguidores...
+[t= 12.01s] [Nodo N3] Replica log del lider N1: ['B=2']
+[t= 12.01s] [Nodo N1] Mayoria confirma. COMMIT del indice 1 = 'B=2'
+[t= 12.26s] [Nodo N3] COMMIT confirmado -> aplica 'B=2'
+
+======================================================================
+ESTADO FINAL DEL CLUSTER
+======================================================================
+  N1: estado=LIDER      termino=2 commit_idx=1 log=['A=1', 'B=2']
+  N2: estado=CAIDO      termino=1 commit_idx=0 log=['A=1']
+  N3: estado=SEGUIDOR   termino=2 commit_idx=1 log=['A=1', 'B=2']
