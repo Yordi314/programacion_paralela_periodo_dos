@@ -105,7 +105,3 @@ Todas las llamadas colectivas de MPI bloquean hasta que todos los procesos del c
 - El **balance de carga** entre procesos, para que uno lento no bloquee a los demás.
 - La **simetría en los argumentos** (raíz, tipo, cantidad, operación) en todos los procesos.
 - El **manejo de errores** antes de las colectivas: cualquier `MPI_Abort` en la raíz debe hacerse antes de bloquear al resto.
-
-## Licencia
-
-Trabajo académico. Uso educativo permitido con atribución.
