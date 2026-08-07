@@ -1,0 +1,21 @@
+=====================================================
+ Calculo distribuido del promedio de N*P numeros
+ Procesos activos: 6
+=====================================================
+Ingrese la cantidad N de valores por proceso: [Rank 0] Genero 8 valores  |  suma parcial =     471.9700
+[Rank 1] Genero 8 valores  |  suma parcial =     330.4065
+[Rank 5] Genero 8 valores  |  suma parcial =     278.9047
+[Rank 3] Genero 8 valores  |  suma parcial =     357.1896
+[Rank 2] Genero 8 valores  |  suma parcial =     545.3945
+[Rank 4] Genero 8 valores  |  suma parcial =     368.7225
+-----------------------------------------------------
+Suma total   =      2352.5877
+Elementos    = 6 procesos x 8 valores = 48
+Promedio     =      49.012245
+-----------------------------------------------------
+[Rank 0] Promedio global recibido = 49.012245
+[Rank 1] Promedio global recibido = 49.012245
+[Rank 4] Promedio global recibido = 49.012245
+[Rank 3] Promedio global recibido = 49.012245
+[Rank 2] Promedio global recibido = 49.012245
+[Rank 5] Promedio global recibido = 49.012245

@@ -1,0 +1,17 @@
+=====================================================
+ Calculo distribuido del promedio de N*P numeros
+ Procesos activos: 4
+=====================================================
+Ingrese la cantidad N de valores por proceso: [Rank 0] Genero 1000 valores  |  suma parcial =   50802.5034
+[Rank 1] Genero 1000 valores  |  suma parcial =   49679.6350
+[Rank 3] Genero 1000 valores  |  suma parcial =   50866.2949
+[Rank 2] Genero 1000 valores  |  suma parcial =   48677.1283
+-----------------------------------------------------
+Suma total   =    200025.5617
+Elementos    = 4 procesos x 1000 valores = 4000
+Promedio     =      50.006390
+-----------------------------------------------------
+[Rank 0] Promedio global recibido = 50.006390
+[Rank 2] Promedio global recibido = 50.006390
+[Rank 1] Promedio global recibido = 50.006390
+[Rank 3] Promedio global recibido = 50.006390
