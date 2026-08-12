@@ -1,0 +1,75 @@
+
+############# INVOCACION 1: SUM (exito) #############
+14:35:31.411 INFO Slf4jLogger - Slf4jLogger started
+14:35:31.540 INFO SupervisorActor - Supervisor iniciado con 3 workers
+14:35:31.540 INFO SupervisorActor - Supervisor rutea tarea 15ecbe7d-3fa4-4e25-b14a-5de1d96e5a5b -> worker-0 (total=1)
+14:35:31.540 INFO WorkerActor - Worker [worker-0] iniciado
+14:35:31.540 INFO WorkerActor - Worker [worker-1] iniciado
+14:35:31.540 INFO WorkerActor - Worker [worker-2] iniciado
+14:35:31.549 INFO WorkerActor - Worker [worker-0] recibe tarea Task{id=15ecbe7d-3fa4-4e25-b14a-5de1d96e5a5b, op=SUM, nums=[10, 20, 30, 40], text='null'}
+>>> REQUEST : {"op":"SUM","numbers":[10,20,30,40]}
+>>> STATUS  : 200  (1225 ms)
+>>> RESPONSE: {"taskId":"15ecbe7d-3fa4-4e25-b14a-5de1d96e5a5b","success":true,"worker":"worker-0","attempts":1,"result":"100"}
+
+############# INVOCACION 2: TRANSFORM (exito) #############
+14:35:31.575 INFO SupervisorActor - Supervisor rutea tarea 30ac2cc5-fe94-4dbb-890b-4e87d932c043 -> worker-1 (total=2)
+14:35:31.576 INFO WorkerActor - Worker [worker-1] recibe tarea Task{id=30ac2cc5-fe94-4dbb-890b-4e87d932c043, op=TRANSFORM, nums=[], text='Yordi'}
+>>> REQUEST : {"op":"TRANSFORM","text":"Yordi"}
+>>> STATUS  : 200  (3 ms)
+>>> RESPONSE: {"taskId":"30ac2cc5-fe94-4dbb-890b-4e87d932c043","success":true,"worker":"worker-1","attempts":1,"result":"IDROY"}
+
+############# INVOCACION 3: FAIL_ME (fallo -> restart) #############
+14:35:31.578 INFO SupervisorActor - Supervisor rutea tarea 5a5decdd-db9a-4362-a7df-0e5cd774450e -> worker-2 (total=3)
+14:35:31.580 INFO WorkerActor - Worker [worker-2] recibe tarea Task{id=5a5decdd-db9a-4362-a7df-0e5cd774450e, op=FAIL_ME, nums=[], text='null'}
+>>> REQUEST : {"op":"FAIL_ME"}
+>>> STATUS  : 500  (5 ms)
+>>> RESPONSE: {"taskId":"5a5decdd-db9a-4362-a7df-0e5cd774450e","success":false,"worker":"worker-2","attempts":1,"error":"FAIL_ME: fallo intencional en worker-2"}
+14:35:31.587 ERROR OneForOneStrategy - FAIL_ME: fallo intencional en worker-2
+java.lang.RuntimeException: FAIL_ME: fallo intencional en worker-2
+	at com.yordi.serverless.actors.WorkerActor.onTask(WorkerActor.java:93)
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:24)
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:20)
+	at scala.PartialFunction.applyOrElse(PartialFunction.scala:214)
+	at scala.PartialFunction.applyOrElse$(PartialFunction.scala:213)
+	at akka.japi.pf.UnitCaseStatement.applyOrElse(CaseStatements.scala:20)
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:269)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:220)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+14:35:31.590 WARN WorkerActor - Worker [worker-2] REINICIANDO por: FAIL_ME: fallo intencional en worker-2
+14:35:31.592 INFO WorkerActor - Worker [worker-2] iniciado
+
+############# INVOCACION 4: TRANSFORM tras restart (exito) #############
+14:35:32.084 INFO SupervisorActor - Supervisor rutea tarea 8d98d174-5361-45b4-8d4f-00bff454755f -> worker-0 (total=4)
+14:35:32.084 INFO WorkerActor - Worker [worker-0] recibe tarea Task{id=8d98d174-5361-45b4-8d4f-00bff454755f, op=TRANSFORM, nums=[], text='Akka'}
+>>> REQUEST : {"op":"TRANSFORM","text":"Akka"}
+>>> STATUS  : 200  (3 ms)
+>>> RESPONSE: {"taskId":"8d98d174-5361-45b4-8d4f-00bff454755f","success":true,"worker":"worker-0","attempts":2,"result":"AKKA"}
+
+############# INVOCACION 5: SUM (exito, warm start) #############
+14:35:32.086 INFO SupervisorActor - Supervisor rutea tarea 2241259f-291b-47f4-853d-ea806d5d1753 -> worker-1 (total=5)
+14:35:32.087 INFO WorkerActor - Worker [worker-1] recibe tarea Task{id=2241259f-291b-47f4-853d-ea806d5d1753, op=SUM, nums=[100, 200, 300], text='null'}
+>>> REQUEST : {"op":"SUM","numbers":[100,200,300]}
+>>> STATUS  : 200  (1 ms)
+>>> RESPONSE: {"taskId":"2241259f-291b-47f4-853d-ea806d5d1753","success":true,"worker":"worker-1","attempts":2,"result":"600"}
+
+############# INVOCACION 6: bad_request (400) #############
+>>> REQUEST : {"op":"SUM"}
+>>> STATUS  : 400  (0 ms)
+>>> RESPONSE: {"success":false,"error":"bad_request","message":"SUM requiere 'numbers' no vacio"}
+14:35:32.419 INFO CoordinatedShutdown - Running CoordinatedShutdown with reason [ActorSystemTerminateReason]
+14:35:32.440 INFO WorkerActor - Worker [worker-0] detenido (procesadas=2)
+14:35:32.440 INFO WorkerActor - Worker [worker-1] detenido (procesadas=2)
+14:35:32.440 INFO WorkerActor - Worker [worker-2] detenido (procesadas=0)
+
+Fin de la demo.
