@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Serverless Actors - Semana 14
+  Microservicio Akka Classic desplegado como AWS Lambda con endpoint HTTP.
+  Autor: Yordi Polanco Pujols (24-0937) - UNIBE.
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 1024
+    Runtime: java11
+    Environment:
+      Variables:
+        WORKER_POOL_SIZE: "3"
+
+Resources:
+
+  # Funcion Lambda que contiene el ActorSystem
+  ServerlessActorsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: semana14-serverless-actors
+      Handler: com.yordi.serverless.Handler::handleRequest
+      CodeUri: target/serverless-actors.jar
+      Description: >
+        Handler que despacha peticiones JSON al SupervisorActor.
+        El ActorSystem se cachea entre invocaciones warm.
+      Events:
+        # Endpoint HTTP publico via API Gateway v2 (HTTP API)
+        TaskEndpoint:
+          Type: HttpApi
+          Properties:
+            Path: /task
+            Method: post
+            ApiId: !Ref ServerlessActorsApi
+
+  # HTTP API v2 (mas barato y rapido que REST API v1)
+  ServerlessActorsApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      Description: HTTP API para el microservicio de actores
+
+Outputs:
+  ApiUrl:
+    Description: URL del endpoint HTTP publico
+    Value: !Sub "https://${ServerlessActorsApi}.execute-api.${AWS::Region}.amazonaws.com/task"
+  FunctionArn:
+    Description: ARN de la funcion Lambda
+    Value: !GetAtt ServerlessActorsFunction.Arn
