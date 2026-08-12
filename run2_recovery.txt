@@ -1,0 +1,45 @@
+[Rank 1] Recuperado -> iter=10, acc=1520.0000
+[Rank 2] Recuperado -> iter=10, acc=2320.0000
+
+===============================================
+ [RECOVERY] Todos los procesos recuperaron.
+ Iteracion global consistente = 10
+===============================================
+[Rank 0] Recuperado -> iter=10, acc=720.0000
+[Rank 1] iter 11  parcial=  196.00  acc=   1716.00
+[Rank 1] iter 12  parcial=  204.00  acc=   1920.00
+[Rank 1] iter 13  parcial=  212.00  acc=   2132.00
+[Rank 1] iter 14  parcial=  220.00  acc=   2352.00
+[Rank 1] iter 15  parcial=  228.00  acc=   2580.00
+[Rank 2] iter 11  parcial=  276.00  acc=   2596.00
+[Rank 2] iter 12  parcial=  284.00  acc=   2880.00
+[Rank 2] iter 13  parcial=  292.00  acc=   3172.00
+[Rank 2] iter 14  parcial=  300.00  acc=   3472.00
+[Rank 2] iter 15  parcial=  308.00  acc=   3780.00
+[Rank 0] iter 11  parcial=  116.00  acc=    836.00
+[Rank 0] iter 12  parcial=  124.00  acc=    960.00
+[Rank 0] iter 13  parcial=  132.00  acc=   1092.00
+[Rank 0] iter 14  parcial=  140.00  acc=   1232.00
+[Rank 0] iter 15  parcial=  148.00  acc=   1380.00
+[Rank 1] iter 16  parcial=  236.00  acc=   2816.00
+[Rank 1] iter 17  parcial=  244.00  acc=   3060.00
+[Rank 1] iter 18  parcial=  252.00  acc=   3312.00
+[Rank 1] iter 19  parcial=  260.00  acc=   3572.00
+[Rank 1] iter 20  parcial=  268.00  acc=   3840.00
+[Rank 2] iter 16  parcial=  316.00  acc=   4096.00
+[Rank 2] iter 17  parcial=  324.00  acc=   4420.00
+[Rank 2] iter 18  parcial=  332.00  acc=   4752.00
+[Rank 2] iter 19  parcial=  340.00  acc=   5092.00
+[Rank 2] iter 20  parcial=  348.00  acc=   5440.00
+=== CHECKPOINT COORDINADO en iter 15 ===
+[Rank 0] iter 16  parcial=  156.00  acc=   1536.00
+[Rank 0] iter 17  parcial=  164.00  acc=   1700.00
+[Rank 0] iter 18  parcial=  172.00  acc=   1872.00
+[Rank 0] iter 19  parcial=  180.00  acc=   2052.00
+[Rank 0] iter 20  parcial=  188.00  acc=   2240.00
+=== CHECKPOINT COORDINADO en iter 20 ===
+
+-----------------------------------------------
+ Ejecucion completada correctamente
+ Suma total acumulada por todos los procesos = 11520.0000
+-----------------------------------------------

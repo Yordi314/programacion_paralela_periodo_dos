@@ -1,0 +1,69 @@
+[Rank 1] Inicio desde cero -> iter=0
+[Rank 2] Inicio desde cero -> iter=0
+
+===============================================
+ [START] Inicio limpio, sin checkpoint previo.
+===============================================
+[Rank 0] Inicio desde cero -> iter=0
+[Rank 1] iter  1  parcial=  116.00  acc=    116.00
+[Rank 1] iter  2  parcial=  124.00  acc=    240.00
+[Rank 1] iter  3  parcial=  132.00  acc=    372.00
+[Rank 1] iter  4  parcial=  140.00  acc=    512.00
+[Rank 1] iter  5  parcial=  148.00  acc=    660.00
+[Rank 2] iter  1  parcial=  196.00  acc=    196.00
+[Rank 2] iter  2  parcial=  204.00  acc=    400.00
+[Rank 2] iter  3  parcial=  212.00  acc=    612.00
+[Rank 2] iter  4  parcial=  220.00  acc=    832.00
+[Rank 2] iter  5  parcial=  228.00  acc=   1060.00
+[Rank 0] iter  1  parcial=   36.00  acc=     36.00
+[Rank 0] iter  2  parcial=   44.00  acc=     80.00
+[Rank 0] iter  3  parcial=   52.00  acc=    132.00
+[Rank 0] iter  4  parcial=   60.00  acc=    192.00
+[Rank 0] iter  5  parcial=   68.00  acc=    260.00
+[Rank 2] iter  6  parcial=  236.00  acc=   1296.00
+[Rank 2] iter  7  parcial=  244.00  acc=   1540.00
+[Rank 2] iter  8  parcial=  252.00  acc=   1792.00
+[Rank 2] iter  9  parcial=  260.00  acc=   2052.00
+[Rank 2] iter 10  parcial=  268.00  acc=   2320.00
+[Rank 1] iter  6  parcial=  156.00  acc=    816.00
+[Rank 1] iter  7  parcial=  164.00  acc=    980.00
+[Rank 1] iter  8  parcial=  172.00  acc=   1152.00
+[Rank 1] iter  9  parcial=  180.00  acc=   1332.00
+[Rank 1] iter 10  parcial=  188.00  acc=   1520.00
+=== CHECKPOINT COORDINADO en iter 5 ===
+[Rank 0] iter  6  parcial=   76.00  acc=    336.00
+[Rank 0] iter  7  parcial=   84.00  acc=    420.00
+[Rank 0] iter  8  parcial=   92.00  acc=    512.00
+[Rank 0] iter  9  parcial=  100.00  acc=    612.00
+[Rank 0] iter 10  parcial=  108.00  acc=    720.00
+
+############################################
+  [Rank 1] *** FALLO SIMULADO en iter 12 ***
+  Abortando con exit(EXIT_FAILURE). El runtime
+  MPI derribara a los demas procesos.
+############################################
+
+[Rank 1] iter 11  parcial=  196.00  acc=   1716.00
+[Rank 1] iter 12  parcial=  204.00  acc=   1920.00
+[Rank 2] iter 11  parcial=  276.00  acc=   2596.00
+[Rank 2] iter 12  parcial=  284.00  acc=   2880.00
+[Rank 2] iter 13  parcial=  292.00  acc=   3172.00
+[Rank 2] iter 14  parcial=  300.00  acc=   3472.00
+[Rank 2] iter 15  parcial=  308.00  acc=   3780.00
+=== CHECKPOINT COORDINADO en iter 10 ===
+[Rank 0] iter 11  parcial=  116.00  acc=    836.00
+[Rank 0] iter 12  parcial=  124.00  acc=    960.00
+[Rank 0] iter 13  parcial=  132.00  acc=   1092.00
+[Rank 0] iter 14  parcial=  140.00  acc=   1232.00
+[Rank 0] iter 15  parcial=  148.00  acc=   1380.00
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[27922,1],1]
+  Exit code:    1
+--------------------------------------------------------------------------
